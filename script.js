@@ -12,12 +12,6 @@ let arr = [
 ]
 let newgame = document.querySelector(".reset")
 
-newgame.addEventListener("click", () => {
-    boxes.forEach(input => {
-        input.innerText = "";
-    });
-
-})
 
 turn = true;
 
@@ -28,9 +22,9 @@ boxes.forEach((boxes) => {
             boxes.innerText = "0"
             turn = false;
             boxes.disabled = true;
-
+            
         } else {
-          
+            
             boxes.innerText = "x"
             turn = true;
             boxes.disabled = true;
@@ -48,7 +42,7 @@ let checkwinner = () => {
         let pos1val = boxes[pattern[0]].innerText
         let pos2val = boxes[pattern[1]].innerText
         let pos3val = boxes[pattern[2]].innerText
-     
+        
         if (pos1val != "" && pos2val != "" && pos3val != "") {
             if (pos1val === pos2val && pos2val === pos3val) {
                 if (pos1val === "x") {
@@ -61,15 +55,15 @@ let checkwinner = () => {
                     offbox();
                 }
             } let filled = 0;
-
+            
             for (let box of boxes) {
                 if (box.innerText !== "") {
                     filled++;
                 }
             }
-
+            
             if (filled === 9) {
-                 document.querySelector(".para").innerText = "you  both are loosers, no one wins "
+                document.querySelector(".para").innerText = "you  both are loosers, no one wins "
             }
         }
     }
@@ -78,3 +72,13 @@ let checkwinner = () => {
 
 // console.log(checkwinner)
 
+
+newgame.addEventListener("click", () => {
+    boxes.forEach(input => {
+        input.innerText = "";
+        input.disabled = false;
+    });
+    document.querySelector(".para").innerText = "winner will be shown after end of match here";
+    turn = true;
+
+})
